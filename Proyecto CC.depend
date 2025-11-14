@@ -8,3 +8,13 @@
 1762469479 d:\proyecto cc\include\juego.h
 	<iostream>
 
+1763126141 source:d:\ccomp2-2\chronopathfinder\main.cpp
+	<iostream>
+
+1763126613 source:d:\ccomp2-2\chronopathfinder\src\juego.cpp
+	"Juego.h"
+	<iostream>
+
+1763126613 d:\ccomp2-2\chronopathfinder\include\juego.h
+	<iostream>
+

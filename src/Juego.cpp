@@ -1,4 +1,6 @@
 #include "Juego.h"
+#include <iostream>
+using namespace std;
 
 Juego::Juego()
 {
@@ -130,16 +132,23 @@ int PilaHistorial::volverCheckpoint() {
 }
 
 
+
 void Jugador::setDatos(const char* n, int p, int t) {
+
 }
 
 void Jugador::mostrar() {
+     cout << "nombre" << nombre << endl;
+ cout <<  "puntaje" << puntaje << endl;
+ cout << "tiempo" << tiempo << endl;
 }
 
 int Jugador::getPuntaje() {
+    return puntaje;
 }
 
 const char* Jugador::getNombre() {
+    return nombre;
 }
 
 void BaseDeDatosPuntaje::agregar(const Jugador& j) {

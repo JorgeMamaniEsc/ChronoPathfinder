@@ -12,6 +12,7 @@ class Juego
 
     private:
 };
+
 const int MAX = 100;
 
 class NodoBase {
