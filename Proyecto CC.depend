@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1762469296 source:d:\proyecto cc\main.cpp
+	<iostream>
+
+1762470813 source:d:\proyecto cc\src\juego.cpp
+	"Juego.h"
+
+1762469479 d:\proyecto cc\include\juego.h
+	<iostream>
+
