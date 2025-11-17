@@ -151,7 +151,16 @@ const char* Jugador::getNombre() {
     return nombre;
 }
 
-void BaseDeDatosPuntaje::agregar(const Jugador& j) {
+BaseDeDatosPuntaje::BaseDeDatosPuntaje()
+{
+    total = 0;
+}
+void BaseDeDatosPuntaje::agregar(const Jugador& j)
+{
+    if (total < MAX){
+        jugadores[total] = j;
+        total++;
+    }
 }
 
 void BaseDeDatosPuntaje::guardarArchivo() {
@@ -160,10 +169,31 @@ void BaseDeDatosPuntaje::guardarArchivo() {
 void BaseDeDatosPuntaje::cargarArchivo() {
 }
 
-void BaseDeDatosPuntaje::mostrarRanking() {
+void BaseDeDatosPuntaje::mostrarRanking()
+{
+    cout << "------RANKING-----"<<endl;
+    for (int i = 0; i<total; i++){
+        cout << i+1 <<". ";
+        jugadores[i].mostrar();
+    }
 }
 
-int BaseDeDatosPuntaje::mejorPuntaje() {}
+
+int BaseDeDatosPuntaje::mejorPuntaje()
+{
+    if (total==0){
+        return 0;
+    }
+    else{
+        int mejor = jugadores[0].getPuntaje();
+        for (int i= 1; i<total;i++){
+            if (jugadores[i].getPuntaje()>mejor){
+                mejor = jugadores[i].getPuntaje();
+            }
+        }
+        return mejor;
+    }
+}
 
 
 void JuegoPrincipal::iniciar(){}

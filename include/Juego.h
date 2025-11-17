@@ -126,6 +126,7 @@ private:
     Jugador jugadores[MAX];
     int total;
 public:
+    BaseDeDatosPuntaje();
     void agregar(const Jugador& j);
     void guardarArchivo();
     void cargarArchivo();
