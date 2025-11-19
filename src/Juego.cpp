@@ -57,15 +57,29 @@ bool LineaTemporal::verificarParadoja() {
 }
 
 int LineaTemporal::getEstado() {
-
+   return estado;
 }
 
 int LineaTemporal::getPadre() {
-
+   return padre;
 }
 
 void LineaTemporal::mostrarInfo() {
+    cout << "------Linea Temporal------" << endl;
+    cout << "ID: " << id << endl;
+    cout << "Estado: " << estado << endl;
+    cout << "Padre: " << padre << endl;
+    cout << "Es Checkpoint: " << (_esCheckpoint ? "Si" : "No") << endl;
+    cout << "Tiene Paradoja: " << (paradoja ? "Si" : "No") << endl;
+    cout << "Hijos: ";
+    if (hijos->vacia()) {
+        cout << "Ninguno" << endl;
+    } else {
+        hijos->mostrar();
+    }
+    cout << "-------------------" << endl;
 }
+
 
 void LineaTemporal::setCheckpoint(bool) {
 }
