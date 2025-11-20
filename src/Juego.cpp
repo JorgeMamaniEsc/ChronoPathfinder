@@ -218,9 +218,57 @@ int BaseDeDatosPuntaje::mejorPuntaje()
 }
 
 
-void JuegoPrincipal::iniciar(){}
 
-void JuegoPrincipal::menu() {}
+/**JuegoPrincipal::JuegoPrincipal()
+{
+    lineaActual = 0;    //opcion (preguntar)
+    fin = false;
+}*/
+void JuegoPrincipal::iniciar()
+{
+    db.cargarArchivo(); //cargar puntajes anteriores
+
+    cout << "Nombre del jugador: "<<endl;
+    char nombre[20];
+    cin>>nombre;
+    jugador.setDatos(nombre,0,0);
+
+    grafo.agregarLinea(0,-1);  //linea inicial
+
+    lineaActual = 0;
+    fin = false;
+
+    menu();
+}
+
+void JuegoPrincipal::menu()
+{
+    int option;
+
+    while (!fin){
+
+        cout << "-----MENU-----"<<endl;
+        cout << "1. Tomar decision"<<endl;
+        cout << "2. Mostrar estado actual"<<endl;
+        cout << "3. Salir "<<endl;
+        cin>>option;
+        switch (option){
+            case 1:
+                procesarDecision();
+                break;
+            case 2:
+                mostrarEstadoActual();
+                break;
+            case 3:
+                fin = true;
+            default:
+                cout <<"Opcion invalida"<<endl;
+        }
+    }
+
+    guardarPuntaje();
+
+}
 
 void JuegoPrincipal::procesarDecision() {}
 

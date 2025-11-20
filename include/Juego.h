@@ -144,6 +144,7 @@ private:
     int lineaActual;
     bool fin;
 public:
+    //JuegoPrincipal();
     void iniciar();
     void menu();
     void procesarDecision();
