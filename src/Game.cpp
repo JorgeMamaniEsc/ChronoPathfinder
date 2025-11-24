@@ -274,6 +274,12 @@ void Juego::jugarNivel(int n)
     else
     {
         cout << "\n¡Felicidades! Terminaste todos los niveles.\n";
+        ScoreDB db("scores.txt");
+
+        db.guardarScore(jugador.getPh());
+
+        db.mostrarRanking();
+
     }
 }
 void Juego::moverJugador()
@@ -358,7 +364,7 @@ void Juego::interactuarConNPC(int id)
 
     if(jugador.esAmigo(id))
     {
-        cout << npc->getNombre() << ": ¡Broooo qué tal! :D\n";
+        cout << npc->getNombre() << ": ¡Broooo que tal! :D\n";
         return;
     }
 
@@ -397,4 +403,53 @@ Juego::~Juego()
     for(int i=0;i<totalNPC;i++) delete npcs[i];
     delete[] npcs;
 
+}
+
+
+ScoreDB::ScoreDB(const string& path) {
+    archivo = path;
+}
+
+void ScoreDB::guardarScore(int puntos){
+    ofstream out(archivo.c_str(), ios::app);
+
+    if(!out){
+        cout << "ERROR: No se pudo abrir archivo de puntajes.\n";
+        return;
+    }
+
+    out << puntos << endl;
+    out.close();
+}
+
+void ScoreDB::mostrarRanking(){
+    ifstream in(archivo.c_str());
+
+    if(!in){
+        cout << "\nNo hay puntajes registrados.\n";
+        return;
+    }
+
+    RBT<Pair> rank;
+    int puntos;
+    int idx = 0;
+    while(in >> puntos){
+        Pair p(puntos, idx);
+        rank.insert(p);
+        idx++;
+    }
+    in.close();
+
+    if(idx == 0){
+        cout << "\nNo hay puntajes registrados.\n";
+        return;
+    }
+
+    cout << "\n===== RANKING =====\n";
+    rank.printInOrder();
+    cout << "===================\n";
+}
+
+ScoreDB::~ScoreDB(){
+    //hot radaaaa
 }

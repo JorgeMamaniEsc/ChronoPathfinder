@@ -14,8 +14,8 @@ Pair::Pair()
 }
 
 bool Pair::operator < (const Pair &o) const{
-    if(first==o.first)return second<o.second;
-    return first<o.first;
+    if(first==o.first)return second>o.second;
+    return first>o.first;
 }
 bool Pair::operator > (const Pair &o) const{
     return o<*this;

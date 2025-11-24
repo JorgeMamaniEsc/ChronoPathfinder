@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "RBT.h"
 #include "Menu.h"
 #include "DataStructures.h"

@@ -13,8 +13,9 @@
 1763697400 source:c:\users\user\documents\chrono\crhono\src\trees.cpp
 	"Trees.h"
 
-1763955310 source:c:\users\user\documents\chrono\crhono\main.cpp
+1764003688 source:c:\users\user\documents\chrono\crhono\main.cpp
 	<iostream>
+	<fstream>
 	"RBT.h"
 	"Menu.h"
 	"DataStructures.h"
@@ -31,10 +32,10 @@
 1763918813 c:\users\user\documents\chrono\crhono\include\trees.tpp
 	"Trees.h"
 
-1763998675 c:\users\user\documents\chrono\crhono\include\rbt.tpp
+1764004213 c:\users\user\documents\chrono\crhono\include\rbt.tpp
 	"RBT.h"
 
-1763937062 source:c:\users\user\documents\chrono\crhono\src\datastructures.cpp
+1764004174 source:c:\users\user\documents\chrono\crhono\src\datastructures.cpp
 	"DataStructures.h"
 
 1763937000 c:\users\user\documents\chrono\crhono\include\datastructures.h
@@ -51,8 +52,9 @@
 	<iostream>
 	"RBT.h"
 
-1763999873 c:\users\user\documents\chrono\crhono\include\game.h
+1764005567 c:\users\user\documents\chrono\crhono\include\game.h
 	<iostream>
+	<fstream>
 	"DataStructures.h"
 	"TwoSAT.h"
 	"Personaje.h"

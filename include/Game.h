@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <iostream>
+#include <fstream>
 #include "DataStructures.h"
 #include "TwoSAT.h"
 #include "Personaje.h"
@@ -83,6 +84,17 @@ class Juego
         void jugarNivel(int n);
 
         ~Juego();
+};
+
+class ScoreDB {
+private:
+    string archivo;
+
+public:
+    ScoreDB(const string& path);
+    void guardarScore(int puntos);
+    void mostrarRanking();
+    ~ScoreDB();
 };
 
 #endif // GAME_H

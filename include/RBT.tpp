@@ -139,7 +139,7 @@ template <typename T>
 void RBT<T>::inorder(Node<T>* x) {
     if (!x) return;
     inorder(x->getLeft());
-    cout << x->getKey() << " ";
+    cout << x->getKey() <<endl;
     inorder(x->getRight());
 }
 
