@@ -14,6 +14,7 @@ class Personajes
         void setPos(int nx, int ny);
         int getX() const;
         int getY() const;
+
         virtual ~Personajes();
 
     protected:
@@ -58,7 +59,7 @@ class Jugador:public Personajes
 
         bool esAmigo(int npc);
         bool esEnemigo(int npc);
-
+        void mover(int dx, int dy);
         void guardarCheckpoint();
         void cargarCheckpoint();
 

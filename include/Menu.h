@@ -4,18 +4,27 @@
 #define endl '\n'
 using namespace std;
 
-class Menu
+class MenuPrincipal
 {
     public:
-        Menu();
-        void mostrar();
-        int read();
-        virtual ~Menu();
+        MenuPrincipal();
 
-    protected:
+        void mostrar() const;
+        int leerOpcion() const;
 
-    private:
-        //void cleanScreen();
+        ~MenuPrincipal();
+};
+
+
+class MenuPausa
+{
+    public:
+        MenuPausa();
+
+        void mostrar() const;
+        int leerOpcion() const;
+
+        ~MenuPausa();
 };
 
 #endif // MENU_H
