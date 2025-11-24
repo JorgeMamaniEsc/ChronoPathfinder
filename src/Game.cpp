@@ -1,8 +1,6 @@
 #include "Game.h"
 
-//
-// ----------- NIVEL -----------
-//
+
 Nivel::Nivel(int n)
 {
     numero = n;
@@ -20,16 +18,19 @@ void Nivel::agregarNPC(int npc){
     presentes.push(npc);
 }
 
-const Vec& Nivel::getDefensores() const { return defensores; }
-const Vec& Nivel::getAtacantes() const { return atacantes; }
-const Vec& Nivel::getPresentes() const { return presentes; }
+const Vec& Nivel::getDefensores() const {
+    return defensores;
+}
+const Vec& Nivel::getAtacantes() const {
+    return atacantes;
+}
+const Vec& Nivel::getPresentes() const {
+    return presentes;
+}
 
 Nivel::~Nivel() {}
 
 
-//
-// ----------- MAPA -----------
-//
 
 Mapa::Mapa(int alt,int anc)
 {
@@ -123,6 +124,9 @@ Juego::Juego(int cantNPC, int cantNiveles): mapa(15,30)
 
     inicializarNPCs();
     inicializarNiveles();
+    npcEnPos.resize(mapa.getAltura() * mapa.getAncho());
+
+    jugador.guardarCheckpoint(nivelActual);
 }
 
 void Juego::inicializarNPCs()
@@ -135,8 +139,12 @@ void Juego::inicializarNPCs()
 
 void Juego::inicializarNiveles()
 {
-    niveles[0]->agregarDefensor(0);
-    niveles[1]->agregarDefensor(1);
+    niveles[1]->agregarDefensor(0);
+    niveles[0]->agregarNPC(0);
+    niveles[0]->agregarNPC(1);
+    niveles[1]->agregarNPC(0);
+    niveles[1]->agregarNPC(1);
+    niveles[1]->agregarNPC(2);
 }
 
 
@@ -146,41 +154,66 @@ TwoSAT Juego::construirTwoSATActual()
 
     for(int i=0; i<totalNPC; i++)
     {
-        int F=2*i;
-        int E=2*i+1;
+        int F = 2*i;
+        int E = F + 1;
 
-        ts.addOr( ts.var(F,false), ts.var(E,false) );
+        ts.addOr( ts.var(F, false), ts.var(E, false) );
 
-        if(jugador.esAmigo(i))
-            ts.setTrue( ts.var(F,true) );
 
-        if(jugador.esEnemigo(i))
-            ts.setTrue( ts.var(E,true) );
+        int rel = npcs[i]->getRelacionNatural();
+
+        if(rel == 1)
+        {
+            ts.setTrue(ts.var(F, true));
+            ts.setTrue(ts.var(E, false));
+        }
+
+        if(rel == 2)
+        {
+            ts.setTrue(ts.var(E, true));
+            ts.setTrue(ts.var(F, false));
+        }
+
+        if(jugador.esAmigo(i)){
+            ts.setTrue(ts.var(F, true));
+            ts.setTrue(ts.var(E, false));
+        }
+
+        if(jugador.esEnemigo(i)){
+            ts.setTrue(ts.var(E, true));
+            ts.setTrue(ts.var(F, false));
+        }
+
     }
-
-    int npc = 2;
-    int F2 = 2*npc;
-
-    ts.setTrue( ts.var(F2, false) );
 
     return ts;
 }
-
 void Juego::mostrarMapaNivel(int n)
 {
     mapa.limpiar();
 
     mapa.colocarJugador(jugador.getX(), jugador.getY());
 
+    colocarNPCsDelNivel(nivelActual);
+    mapa.dibujar();
+}
+
+void Juego::colocarNPCsDelNivel(int n)
+{
+    posKeys.clear();
     const Vec& p = niveles[n]->getPresentes();
     for(int i = 0; i < p.size(); i++)
     {
-        int npc = p[i];
-        mapa.colocarNPC(3+i, 10+i, 'N');
+        int id=p[i];
+        int xx=3+2*i;
+        int yy=10+2*i;
+        mapa.colocarNPC(xx,yy,'N');
+        int key = xx * mapa.getAncho() + yy;
+        posKeys.insert(key);
+        npcEnPos[key] = id;
     }
-
-    mapa.dibujar();
 }
+
 
 void Juego::guardarCheckpoint()
 {
@@ -193,7 +226,7 @@ void Juego::guardarCheckpoint()
     }
 
     jugador.setPh(jugador.getPh() - 1);
-    jugador.guardarCheckpoint();
+    jugador.guardarCheckpoint(nivelActual);
     cout << "Checkpoint guardado.\n";
 }
 
@@ -202,21 +235,24 @@ void Juego::jugarNivel(int n)
     TwoSAT ts = construirTwoSATActual();
 
     const Vec& defenders = niveles[n]->getDefensores();
-    for(int i = 0; i < defenders.size(); i++)
-    {
+    for (int i = 0; i < defenders.size(); i++){
         int npc = defenders[i];
+        if (!jugador.esAmigo(npc)){
+            nivelActual = jugador.cargarCheckpoint();
+            jugarNivel(nivelActual);
+        }
+
         int F = 2*npc;
         int E = F + 1;
-
         ts.setTrue( ts.var(F, true) );
         ts.setTrue( ts.var(E, false) );
     }
 
+    jugador.setPos(0, 0);
     if(!ts.solve())
     {
-        cout << "Paradoja. Volviendo al checkpoint...\n";
-        jugador.cargarCheckpoint();
-        return;
+        nivelActual = jugador.cargarCheckpoint();
+        jugarNivel(nivelActual);
     }
 
     cout << "Nivel " << n << " habilitado.\n";
@@ -246,12 +282,12 @@ void Juego::moverJugador()
     {
         mapa.limpiar();
         mapa.colocarJugador(jugador.getX(), jugador.getY());
-
+        colocarNPCsDelNivel(nivelActual);
         mapa.colocarPuerta(mapa.getAltura() - 1, mapa.getAncho() - 1);
 
         mapa.dibujar();
-
-        cout <<endl<< "Mover (w/a/s/d, p = pausa): ";
+        cout<<endl<<"NIVEL ACTUAL: "<<nivelActual<<endl;
+        cout <<endl<<"PH ACTUAL:  "<<jugador.getPh()<<endl<<endl<< "Mover (w/a/s/d, p = pausa): ";
         char op;
         cin >> op;
 
@@ -287,11 +323,69 @@ void Juego::moverJugador()
             cout << "\nHas encontrado la puerta del nivel!\n\n";
             return;
         }
+        int npcID = npcEn(nx, ny);
+        if(npcID != -1){
+            cout << "\nHay un NPC aqui. Interactuar? (y/n): ";
+            char c; cin >> c;
 
+            if(c == 'y' || c == 'Y'){
+                interactuarConNPC(npcID);
+                continue;
+            }else{
+                cout << "Lo ignoras.\n";
+                continue;
+            }
+}
         jugador.setPos(nx, ny);
     }
 }
 
+int Juego::npcEn(int x, int y){
+    int key=x*mapa.getAncho()+y;
+    if(!posKeys.find(key))    return -1;
+
+    return npcEnPos[key];
+}
+
+void Juego::interactuarConNPC(int id)
+{
+    NPC* npc = npcs[id];
+    string nombre = npc->getNombre();
+
+    cout << "\n=================================\n";
+    cout << " Te encuentras con: " << nombre << "\n";
+    cout << "=================================\n";
+
+    if(jugador.esAmigo(id))
+    {
+        cout << npc->getNombre() << ": ¡Broooo qué tal! :D\n";
+        return;
+    }
+
+    if(jugador.esEnemigo(id) || npc->getRelacionNatural() == 2)
+    {
+        cout << npc->getNombre() << ": No quiero hablar contigo.\n";
+        return;
+    }
+
+    int costo = 2;
+    cout << npc->getNombre() << ": No te conozco, pero pareces buena persona.\n";
+    cout << "¿Quieres hacerte amigo? (costo: " << costo << " PH)\n";
+    cout << "1) Si\n2) No\n> ";
+
+    int op; cin >> op;
+
+    if(op == 1)
+    {
+        if(jugador.getPh() >= costo)
+        {
+            jugador.setPh(jugador.getPh() - costo);
+            jugador.hacerAmigo(id);
+            cout << "Ahora " << npc->getNombre() << " es tu amigo!\n";
+        }
+        else cout << "No tienes PH suficiente.\n";
+    }
+}
 
 Juego::~Juego()
 {

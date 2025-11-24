@@ -6,6 +6,8 @@
 #include "TwoSAT.h"
 #include "Personaje.h"
 #include "Menu.h"
+#include "RBT.h"
+#define endl '\n'
 using namespace std;
 
 class Nivel
@@ -61,8 +63,9 @@ class Juego
         int nivelActual;
         int totalNPC;
         int totalNiveles;
-
+        RBT<int> posKeys;
         Mapa mapa;
+        Vec npcEnPos;
 
         TwoSAT construirTwoSATActual();
 
@@ -71,10 +74,11 @@ class Juego
 
         void inicializarNPCs();
         void inicializarNiveles();
-
+        void colocarNPCsDelNivel(int n);
         void moverJugador();
         void mostrarMapaNivel(int n);
-
+        int npcEn(int x, int y);
+        void interactuarConNPC(int id);
         void guardarCheckpoint();
         void jugarNivel(int n);
 

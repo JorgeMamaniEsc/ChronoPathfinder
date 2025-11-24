@@ -57,6 +57,10 @@ NPC::~NPC(){
 Jugador::Jugador():Personajes(-1,"Jugador"){
     ph=10;
     phCheckpoint=ph;
+    amigos.clear();
+    enemigos.clear();
+    ignorados.clear();
+    lvlCheckpoint = 0;
 }
 
 void Jugador::setPh(int v){
@@ -87,19 +91,20 @@ bool Jugador::esEnemigo(int npc) {
     return enemigos.find(npc);
 }
 
-void Jugador::guardarCheckpoint(){
+void Jugador::guardarCheckpoint(int nivel){
     phCheckpoint=ph;
     amigosCheckpoint = amigos;
     enemigosCheckpoint = enemigos;
     ignoradosCheckpoint = ignorados;
+    lvlCheckpoint = nivel;
 }
 
-void Jugador::cargarCheckpoint(){
+int Jugador::cargarCheckpoint(){
     ph=phCheckpoint;
     amigos = amigosCheckpoint;
     enemigos = enemigosCheckpoint;
     ignorados = ignoradosCheckpoint;
-
+    return lvlCheckpoint;
 }
 
 void Jugador::mover(int dx, int dy)

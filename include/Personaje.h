@@ -41,6 +41,7 @@ class Jugador:public Personajes
 {
     private:
         int ph;
+        int lvlCheckpoint;
         RBT<int> amigos;
         RBT<int> enemigos;
         RBT<int> ignorados;
@@ -60,8 +61,8 @@ class Jugador:public Personajes
         bool esAmigo(int npc);
         bool esEnemigo(int npc);
         void mover(int dx, int dy);
-        void guardarCheckpoint();
-        void cargarCheckpoint();
+        void guardarCheckpoint(int nivel);
+        int cargarCheckpoint();
 
         ~Jugador();
 };

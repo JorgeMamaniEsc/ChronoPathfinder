@@ -148,3 +148,22 @@ void RBT<T>::printInOrder() {
     inorder(root);
     cout << "\n";
 }
+
+template <typename T>
+void RBT<T>::clearRec(Node<T>* x) {
+    if (!x) return;
+    clearRec(x->getLeft());
+    clearRec(x->getRight());
+    delete x;
+}
+
+template <typename T>
+void RBT<T>::clear() {
+    clearRec(root);
+    root = nullptr;
+}
+
+template <typename T>
+RBT<T>::~RBT() {
+    clear();
+}
