@@ -1,0 +1,66 @@
+# depslib dependency file v1.0
+1763872496 source:c:\users\user\documents\chrono\crhono\src\rbt.cpp
+	"RBT.h"
+
+1763919706 c:\users\user\documents\chrono\crhono\include\rbt.h
+	"Trees.h"
+	"RBT.tpp"
+
+1763919582 c:\users\user\documents\chrono\crhono\include\trees.h
+	<iostream>
+	"Trees.tpp"
+
+1763697400 source:c:\users\user\documents\chrono\crhono\src\trees.cpp
+	"Trees.h"
+
+1763955310 source:c:\users\user\documents\chrono\crhono\main.cpp
+	<iostream>
+	"RBT.h"
+	"Menu.h"
+	"DataStructures.h"
+	"TwoSAT.h"
+	"Personaje.h"
+	"Game.h"
+
+1763955237 source:c:\users\user\documents\chrono\crhono\src\menu.cpp
+	"Menu.h"
+
+1763954894 c:\users\user\documents\chrono\crhono\include\menu.h
+	<iostream>
+
+1763918813 c:\users\user\documents\chrono\crhono\include\trees.tpp
+	"Trees.h"
+
+1763918890 c:\users\user\documents\chrono\crhono\include\rbt.tpp
+	"RBT.h"
+
+1763937062 source:c:\users\user\documents\chrono\crhono\src\datastructures.cpp
+	"DataStructures.h"
+
+1763937000 c:\users\user\documents\chrono\crhono\include\datastructures.h
+	<iostream>
+
+1763945859 source:c:\users\user\documents\chrono\crhono\src\twosat.cpp
+	"TwoSAT.h"
+
+1763937133 c:\users\user\documents\chrono\crhono\include\twosat.h
+	<iostream>
+	"DataStructures.h"
+
+1763953037 c:\users\user\documents\chrono\crhono\include\personaje.h
+	<iostream>
+	"RBT.h"
+
+1763956280 c:\users\user\documents\chrono\crhono\include\game.h
+	<iostream>
+	"DataStructures.h"
+	"TwoSAT.h"
+	"Personaje.h"
+	"Menu.h"
+
+1763957300 source:c:\users\user\documents\chrono\crhono\src\game.cpp
+	"Game.h"
+
+1763953013 source:c:\users\user\documents\chrono\crhono\src\personaje.cpp
+	"Personaje.h"
+
