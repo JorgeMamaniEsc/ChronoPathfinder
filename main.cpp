@@ -32,7 +32,8 @@ int main()
             cout << "\nIniciando juego...\n\n";
             game.jugarNivel(0);
         }else if(op == 2){
-            cout << "\nPuntajes aún no implementados.\n";
+            ScoreDB db("scores.txt");
+            db.mostrarRanking();
         }else if(op == 3){
             cout << "Saliendo del juego...\n";
             break;
