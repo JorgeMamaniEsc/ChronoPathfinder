@@ -28,7 +28,7 @@ int main()
 
         if(op == 1){
             cout << "\nIniciando juego...\n\n";
-            Juego game(3, 2);
+            Juego game(10, 5);
             game.juegar();
         }else if(op == 2){
             ScoreDB db("scores.txt");

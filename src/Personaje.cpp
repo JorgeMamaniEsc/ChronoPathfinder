@@ -38,6 +38,16 @@ NPC::NPC(int i,const string &nom,int relacion,int niveles):Personajes(i,nom){
     apareceEnNivel = new bool[niveles];
     for(int i=0;i<niveles;i++) apareceEnNivel[i]=false;
     posNivel =  new Pair[niveles];
+    dialogolvl = new string[niveles];
+    for(int i=0;i < niveles;i++) dialogolvl[i]="EN MANTENIMIENTO...";
+}
+
+string NPC::getDialogo(int nivel){
+    return dialogolvl[nivel];
+}
+
+void NPC::setDialogo(string dialogo,int nivel){
+    dialogolvl[nivel]=dialogo;
 }
 
 void NPC::setAparece(int nivel){

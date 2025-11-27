@@ -132,8 +132,16 @@ void Juego::inicializarNPCs()
     npcs[0] = new NPC(0, "Ana", 1,totalNiveles);
     npcs[1] = new NPC(1, "Luis", 0,totalNiveles);
     npcs[2] = new NPC(2, "Carlos", 0,totalNiveles);
+    npcs[3] = new NPC(3, "Carlos", 1,totalNiveles);
+    npcs[4] = new NPC(4, "Carlos", 1,totalNiveles);
+    npcs[5] = new NPC(5, "Carlos", 1,totalNiveles);
+    npcs[6] = new NPC(6, "Carlos", 1,totalNiveles);
+    npcs[7] = new NPC(7, "Carlos", 1,totalNiveles);
+    npcs[8] = new NPC(8, "Carlos", 1,totalNiveles);
+    npcs[9] = new NPC(9, "Carlos", 1,totalNiveles);
 
-
+    npcs[3]->setNivel(0,8,8);
+    npcs[3]->setAparece(0);
     npcs[0]->setNivel(0,5,6);
     npcs[0]->setAparece(0);
     npcs[1]->setNivel(0,10,9);
@@ -142,13 +150,18 @@ void Juego::inicializarNPCs()
     npcs[0]->setAparece(1);
     npcs[2]->setNivel(1,13,6);
     npcs[2]->setAparece(1);
+
+
+    npcs[0]->setDialogo("GO CHINO?",0);
 }
 
 void Juego::inicializarNiveles()
 {
     niveles[1]->agregarDefensor(0);
+    niveles[1]->agregarDefensor(3);
     niveles[0]->agregarNPC(0);
     niveles[0]->agregarNPC(1);
+    niveles[0]->agregarNPC(3);
     niveles[1]->agregarNPC(0);
     niveles[1]->agregarNPC(2);
 }
@@ -339,6 +352,7 @@ void Juego::interactuarConNPC(int id)
 
     int costo = 2;
     cout << npc->getNombre() << ": No te conozco, pero pareces buena persona.\n";
+    cout << endl<<npc->getDialogo(nivelActual) <<endl<<endl;
     cout << "¿Quieres hacerte amigo? (costo: " << costo << " PH)\n";
     cout << "1) Si\n2) No\n> ";
 

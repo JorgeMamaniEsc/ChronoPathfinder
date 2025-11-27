@@ -30,9 +30,11 @@ class NPC:public Personajes
         int relacionNatural;
         bool* apareceEnNivel;
         Pair* posNivel;
-
+        string* dialogolvl;
     public:
         NPC(int i,const string &nom,int relacion,int niveles);
+        string getDialogo(int nivel);
+        void setDialogo(string dialogo,int nivel);
         void setAparece(int nivel);
         bool aparece(int nivel) const;
         int getRelacionNatural() const;

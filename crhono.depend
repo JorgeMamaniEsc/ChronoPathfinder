@@ -63,3 +63,40 @@
 1764211598 source:c:\users\user\documents\chrono\crhono\src\personaje.cpp
 	"Personaje.h"
 
+1764285772 source:c:\users\user\documents\chrono\chronopathfinder\main.cpp
+	<iostream>
+	<fstream>
+	"Menu.h"
+	"DataStructures.h"
+	"Personaje.h"
+	"Game.h"
+
+1764279751 c:\users\user\documents\chrono\chronopathfinder\include\menu.h
+	<iostream>
+
+1764279751 c:\users\user\documents\chrono\chronopathfinder\include\datastructures.h
+	<iostream>
+
+1764287672 c:\users\user\documents\chrono\chronopathfinder\include\personaje.h
+	<iostream>
+	"DataStructures.h"
+
+1764279751 c:\users\user\documents\chrono\chronopathfinder\include\game.h
+	<iostream>
+	<fstream>
+	"DataStructures.h"
+	"Personaje.h"
+	"Menu.h"
+
+1764279751 source:c:\users\user\documents\chrono\chronopathfinder\src\datastructures.cpp
+	"DataStructures.h"
+
+1764287435 source:c:\users\user\documents\chrono\chronopathfinder\src\game.cpp
+	"Game.h"
+
+1764279751 source:c:\users\user\documents\chrono\chronopathfinder\src\menu.cpp
+	"Menu.h"
+
+1764287659 source:c:\users\user\documents\chrono\chronopathfinder\src\personaje.cpp
+	"Personaje.h"
+
