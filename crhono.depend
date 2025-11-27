@@ -46,7 +46,7 @@
 	<iostream>
 	"DataStructures.h"
 
-1764208750 c:\users\user\documents\chrono\crhono\include\personaje.h
+1764211578 c:\users\user\documents\chrono\crhono\include\personaje.h
 	<iostream>
 	"DataStructures.h"
 
@@ -57,11 +57,9 @@
 	"Personaje.h"
 	"Menu.h"
 
-1764210768 source:c:\users\user\documents\chrono\crhono\src\game.cpp
+1764211961 source:c:\users\user\documents\chrono\crhono\src\game.cpp
 	"Game.h"
-	<cstring>
-	<cerrno>
 
-1764210434 source:c:\users\user\documents\chrono\crhono\src\personaje.cpp
+1764211598 source:c:\users\user\documents\chrono\crhono\src\personaje.cpp
 	"Personaje.h"
 

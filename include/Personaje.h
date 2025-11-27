@@ -63,7 +63,7 @@ class Jugador:public Personajes
         void mover(int dx, int dy);
         void guardarCheckpoint(int nivel,int t);
         int cargarCheckpoint(int t);
-
+        int getLvl();
         ~Jugador();
 };
 

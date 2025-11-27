@@ -177,6 +177,11 @@ void Juego::colocarNPCsDelNivel(int n)
 }
 
 bool Juego::isCan(){
+    int n=jugador.getLvl();
+    for(int i=n;i<totalNiveles;i++){
+        const Vec& p= niveles[i]->getDefensores();
+        for(int j=0;j<p.size();i++) if(jugador.esEnemigo(p[j])) return false;
+    }
     return true;
 }
 

@@ -122,6 +122,10 @@ void Jugador::guardarCheckpoint(int nivel,int t){
     for(int i=0;i<t;i++) estadoRelacionCheckPoint[i] = estadoRelacion[i];
 }
 
+int Jugador::getLvl(){
+    return lvlCheckpoint;
+}
+
 int Jugador::cargarCheckpoint(int t){
     ph=phCheckpoint;
     for(int i=0;i<t;i++) estadoRelacion[i] = estadoRelacionCheckPoint[i];
