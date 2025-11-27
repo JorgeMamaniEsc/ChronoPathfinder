@@ -111,30 +111,37 @@ Mapa::~Mapa()
 
 Juego::Juego(int cantNPC, int cantNiveles): mapa(15,30)
 {
+    jugador.ini(cantNPC);
     totalNPC = cantNPC;
     totalNiveles = cantNiveles;
     nivelActual=0;
     npcs = new NPC*[totalNPC];
     for(int i=0; i<totalNPC; i++) npcs[i] = nullptr;
 
-
     niveles = new Nivel*[totalNiveles];
-    for(int i=0;i<totalNiveles;i++)
-        niveles[i] = new Nivel(i);
+    for(int i=0;i<totalNiveles;i++) niveles[i] = new Nivel(i);
 
     inicializarNPCs();
     inicializarNiveles();
-    npcEnPos.resize(mapa.getAltura() * mapa.getAncho());
 
-    jugador.guardarCheckpoint(nivelActual);
+    jugador.guardarCheckpoint(nivelActual,cantNPC);
 }
 
 void Juego::inicializarNPCs()
 {
-    npcs[0] = new NPC(0, "Ana", 1);
-    npcs[1] = new NPC(1, "Luis", 0);
-    npcs[2] = new NPC(2, "Carlos", 2);
+    npcs[0] = new NPC(0, "Ana", 1,totalNiveles);
+    npcs[1] = new NPC(1, "Luis", 0,totalNiveles);
+    npcs[2] = new NPC(2, "Carlos", 0,totalNiveles);
 
+
+    npcs[0]->setNivel(0,5,6);
+    npcs[0]->setAparece(0);
+    npcs[1]->setNivel(0,10,9);
+    npcs[1]->setAparece(0);
+    npcs[0]->setNivel(1,6,6);
+    npcs[0]->setAparece(1);
+    npcs[2]->setNivel(1,13,6);
+    npcs[2]->setAparece(1);
 }
 
 void Juego::inicializarNiveles()
@@ -143,51 +150,11 @@ void Juego::inicializarNiveles()
     niveles[0]->agregarNPC(0);
     niveles[0]->agregarNPC(1);
     niveles[1]->agregarNPC(0);
-    niveles[1]->agregarNPC(1);
     niveles[1]->agregarNPC(2);
 }
 
 
-TwoSAT Juego::construirTwoSATActual()
-{
-    TwoSAT ts(totalNPC * 2);
 
-    for(int i=0; i<totalNPC; i++)
-    {
-        int F = 2*i;
-        int E = F + 1;
-
-        ts.addOr( ts.var(F, false), ts.var(E, false) );
-
-
-        int rel = npcs[i]->getRelacionNatural();
-
-        if(rel == 1)
-        {
-            ts.setTrue(ts.var(F, true));
-            ts.setTrue(ts.var(E, false));
-        }
-
-        if(rel == 2)
-        {
-            ts.setTrue(ts.var(E, true));
-            ts.setTrue(ts.var(F, false));
-        }
-
-        if(jugador.esAmigo(i)){
-            ts.setTrue(ts.var(F, true));
-            ts.setTrue(ts.var(E, false));
-        }
-
-        if(jugador.esEnemigo(i)){
-            ts.setTrue(ts.var(E, true));
-            ts.setTrue(ts.var(F, false));
-        }
-
-    }
-
-    return ts;
-}
 void Juego::mostrarMapaNivel(int n)
 {
     mapa.limpiar();
@@ -200,61 +167,47 @@ void Juego::mostrarMapaNivel(int n)
 
 void Juego::colocarNPCsDelNivel(int n)
 {
-    posKeys.clear();
     const Vec& p = niveles[n]->getPresentes();
     for(int i = 0; i < p.size(); i++)
     {
         int id=p[i];
-        int xx=3+2*i;
-        int yy=10+2*i;
-        mapa.colocarNPC(xx,yy,'N');
-        int key = xx * mapa.getAncho() + yy;
-        posKeys.insert(key);
-        npcEnPos[key] = id;
+        int x=npcs[id]->getPosX(n),y=npcs[id]->getPosY(n);
+        mapa.colocarNPC(x,y,'N');
     }
 }
 
+bool Juego::isCan(){
+    return true;
+}
+
+void Juego::juegar(){
+    nivelActual=0;
+    while(nivelActual<totalNiveles) jugarNivel(nivelActual);
+}
 
 void Juego::guardarCheckpoint()
 {
-    TwoSAT ts = construirTwoSATActual();
-
-    if(!ts.solve())
-    {
-        cout << "No puedes guardar: contradicción futura.\n";
+    if(!isCan()){
+        cout<<endl<<"Imposible, paradoja detectada"<<endl;
         return;
     }
-
     jugador.setPh(jugador.getPh() - 1);
-    jugador.guardarCheckpoint(nivelActual);
+    jugador.guardarCheckpoint(nivelActual,totalNPC);
     cout << "Checkpoint guardado.\n";
 }
 
 void Juego::jugarNivel(int n)
 {
-    TwoSAT ts = construirTwoSATActual();
-
     const Vec& defenders = niveles[n]->getDefensores();
     for (int i = 0; i < defenders.size(); i++){
         int npc = defenders[i];
         if (!jugador.esAmigo(npc)){
-            nivelActual = jugador.cargarCheckpoint();
-            jugarNivel(nivelActual);
+            cout<<endl<<"..."<<endl;
+            nivelActual = jugador.cargarCheckpoint(totalNPC);
+            return;
         }
-
-        int F = 2*npc;
-        int E = F + 1;
-        ts.setTrue( ts.var(F, true) );
-        ts.setTrue( ts.var(E, false) );
     }
-
     jugador.setPos(0, 0);
-    if(!ts.solve())
-    {
-        nivelActual = jugador.cargarCheckpoint();
-        jugarNivel(nivelActual);
-    }
-
     cout << "Nivel " << n << " habilitado.\n";
     cout << "Explora el mapa y encuentra la puerta.\n\n";
 
@@ -269,19 +222,31 @@ void Juego::jugarNivel(int n)
         cout << "Presiona ENTER para continuar al siguiente nivel...";
         cin.ignore();
         cin.get();
-        jugarNivel(nivelActual);
+        return;
     }
     else
     {
         cout << "\n¡Felicidades! Terminaste todos los niveles.\n";
         ScoreDB db("scores.txt");
+        cout<<"pas1"<<endl;
+        int p=jugador.getPh();
 
-        db.guardarScore(jugador.getPh());
-
+        db.guardarScore(p);
+        cout<<"pas2"<<endl;
         db.mostrarRanking();
-
+        return;
     }
 }
+int Juego::npcEn(int x, int y){
+
+    for(int i=0;i<totalNPC;i++){
+        if(npcs[i]->aparece(nivelActual)){
+            if((npcs[i]->getPosX(nivelActual)==x)&&(npcs[i]->getPosY(nivelActual)==y)) return i;
+        }
+    }
+    return -1;
+}
+
 void Juego::moverJugador()
 {
     while (true)
@@ -346,13 +311,6 @@ void Juego::moverJugador()
     }
 }
 
-int Juego::npcEn(int x, int y){
-    int key=x*mapa.getAncho()+y;
-    if(!posKeys.find(key))    return -1;
-
-    return npcEnPos[key];
-}
-
 void Juego::interactuarConNPC(int id)
 {
     NPC* npc = npcs[id];
@@ -368,7 +326,7 @@ void Juego::interactuarConNPC(int id)
         return;
     }
 
-    if(jugador.esEnemigo(id) || npc->getRelacionNatural() == 2)
+    if(jugador.esEnemigo(id) || npc->getRelacionNatural() == -1)
     {
         cout << npc->getNombre() << ": No quiero hablar contigo.\n";
         return;
@@ -429,25 +387,25 @@ void ScoreDB::mostrarRanking(){
         cout << "\nNo hay puntajes registrados.\n";
         return;
     }
-
-    RBT<Pair> rank;
     int puntos;
-    int idx = 0;
+
+     int rank[100];
+    int len=0;
     while(in >> puntos){
-        Pair p(puntos, idx);
-        rank.insert(p);
-        idx++;
+        rank[len]=puntos;
+        len++;
     }
     in.close();
 
-    if(idx == 0){
+    if(len == 0){
         cout << "\nNo hay puntajes registrados.\n";
         return;
     }
 
     cout << "\n===== RANKING =====\n";
-    rank.printInOrder();
+    for(int i=0;i<len;i++) cout<<rank[i]<<endl;
     cout << "===================\n";
+
 }
 
 ScoreDB::~ScoreDB(){

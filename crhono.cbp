@@ -39,25 +39,11 @@
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/Menu.h" />
 		<Unit filename="include/Personaje.h" />
-		<Unit filename="include/RBT.h" />
-		<Unit filename="include/RBT.tpp" />
-		<Unit filename="include/Trees.h" />
-		<Unit filename="include/Trees.tpp" />
-		<Unit filename="include/TwoSAT.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/DataStructures.cpp" />
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/Menu.cpp" />
 		<Unit filename="src/Personaje.cpp" />
-		<Unit filename="src/RBT.tpp">
-			<Option compile="1" />
-			<Option link="1" />
-		</Unit>
-		<Unit filename="src/Trees.tpp">
-			<Option compile="1" />
-			<Option link="1" />
-		</Unit>
-		<Unit filename="src/TwoSAT.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

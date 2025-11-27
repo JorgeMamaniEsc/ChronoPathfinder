@@ -4,10 +4,8 @@
 #include <iostream>
 #include <fstream>
 #include "DataStructures.h"
-#include "TwoSAT.h"
 #include "Personaje.h"
 #include "Menu.h"
-#include "RBT.h"
 #define endl '\n'
 using namespace std;
 
@@ -64,11 +62,9 @@ class Juego
         int nivelActual;
         int totalNPC;
         int totalNiveles;
-        RBT<int> posKeys;
         Mapa mapa;
         Vec npcEnPos;
 
-        TwoSAT construirTwoSATActual();
 
     public:
         Juego(int cantNPC, int cantNiveles);
@@ -82,7 +78,8 @@ class Juego
         void interactuarConNPC(int id);
         void guardarCheckpoint();
         void jugarNivel(int n);
-
+        bool isCan();
+        void juegar();
         ~Juego();
 };
 

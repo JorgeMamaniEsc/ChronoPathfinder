@@ -1,9 +1,7 @@
 #include <iostream>
 #include <fstream>
-#include "RBT.h"
 #include "Menu.h"
 #include "DataStructures.h"
-#include "TwoSAT.h"
 #include "Personaje.h"
 #include "Game.h"
 #define f(i,a,b,c) for(int i=a;i<b;i+=c)
@@ -22,7 +20,7 @@ void cleanScreen() {
 int main()
 {
     MenuPrincipal menu;
-    Juego game(3, 2);
+
     while(true)
     {
         menu.mostrar();
@@ -30,7 +28,8 @@ int main()
 
         if(op == 1){
             cout << "\nIniciando juego...\n\n";
-            game.jugarNivel(0);
+            Juego game(3, 2);
+            game.juegar();
         }else if(op == 2){
             ScoreDB db("scores.txt");
             db.mostrarRanking();
@@ -41,5 +40,6 @@ int main()
             cout << "Opción inválida.\n";
         }
     }
+    cout<<"owo"<<endl;
     return 0;
 }

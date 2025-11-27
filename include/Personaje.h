@@ -1,7 +1,7 @@
 #ifndef PERSONAJE_H
 #define PERSONAJE_H
 #include <iostream>
-#include "RBT.h"
+#include "DataStructures.h"
 using namespace std;
 #define endl '\n'
 
@@ -28,12 +28,17 @@ class NPC:public Personajes
 {
     private:
         int relacionNatural;
-        bool apareceEnNivel[30];
+        bool* apareceEnNivel;
+        Pair* posNivel;
+
     public:
-        NPC(int i,const string &nom,int relacion);
-        void setAparece(int nivel,bool v);
+        NPC(int i,const string &nom,int relacion,int niveles);
+        void setAparece(int nivel);
         bool aparece(int nivel) const;
         int getRelacionNatural() const;
+        void setNivel(int nivel,int x,int y);
+        int getPosX(int nivel);
+        int getPosY(int nivel);
         ~NPC();
 };
 
@@ -42,27 +47,22 @@ class Jugador:public Personajes
     private:
         int ph;
         int lvlCheckpoint;
-        RBT<int> amigos;
-        RBT<int> enemigos;
-        RBT<int> ignorados;
+        int* estadoRelacion;
+        int* estadoRelacionCheckPoint;
         int phCheckpoint;
-        RBT<int> amigosCheckpoint;
-        RBT<int> enemigosCheckpoint;
-        RBT<int> ignoradosCheckpoint;
     public:
         Jugador();
-
         void setPh(int v);
-        int getPh() const;
+        int getPh();
         void hacerAmigo(int npc);
         void hacerEnemigo(int npc);
         void ignorar(int npc);
-
+        void ini(int n);
         bool esAmigo(int npc);
         bool esEnemigo(int npc);
         void mover(int dx, int dy);
-        void guardarCheckpoint(int nivel);
-        int cargarCheckpoint();
+        void guardarCheckpoint(int nivel,int t);
+        int cargarCheckpoint(int t);
 
         ~Jugador();
 };
