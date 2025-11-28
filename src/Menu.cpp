@@ -40,8 +40,7 @@ void MenuPausa::mostrar() const
     cout << "\n===== PAUSA =====\n";
     cout << " [1] Continuar\n";
     cout << " [2] Guardar Checkpoint\n";
-    cout << " [3] Salir al Menu Principal\n";
-    cout << " [4] Salir del Juego\n";
+    cout << " [3] Salir del Juego\n";
     cout << "Opcion: ";
 }
 
