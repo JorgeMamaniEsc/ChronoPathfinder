@@ -81,7 +81,7 @@ NPC::~NPC(){
 }
 
 Jugador::Jugador():Personajes(-1,"Jugador"){
-    ph=10; //aca se cambia el ph apaza
+    ph=30;
     phCheckpoint=ph;
     lvlCheckpoint = 0;
 }
@@ -114,7 +114,7 @@ void Jugador::hacerEnemigo(int npc){
 }
 
 void Jugador::ignorar(int npc){
-    estadoRelacion[npc]=2;
+    estadoRelacion[npc]=0;
 }
 
 

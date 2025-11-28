@@ -109,7 +109,7 @@ Mapa::~Mapa()
 
 
 
-Juego::Juego(int cantNPC, int cantNiveles): mapa(15,30)
+Juego::Juego(int cantNPC, int cantNiveles): mapa(25,40)
 {
     jugador.ini(cantNPC);
     totalNPC = cantNPC;
@@ -129,42 +129,145 @@ Juego::Juego(int cantNPC, int cantNiveles): mapa(15,30)
 
 void Juego::inicializarNPCs()
 {
-    npcs[0] = new NPC(0, "Ana", 1,totalNiveles);
-    npcs[1] = new NPC(1, "Luis", 0,totalNiveles);
-    npcs[2] = new NPC(2, "Carlos", 0,totalNiveles);
-    npcs[3] = new NPC(3, "Carlos", 1,totalNiveles);
-    npcs[4] = new NPC(4, "Carlos", 1,totalNiveles);
-    npcs[5] = new NPC(5, "Carlos", 1,totalNiveles);
-    npcs[6] = new NPC(6, "Carlos", 1,totalNiveles);
-    npcs[7] = new NPC(7, "Carlos", 1,totalNiveles);
-    npcs[8] = new NPC(8, "Carlos", 1,totalNiveles);
-    npcs[9] = new NPC(9, "Carlos", 1,totalNiveles);
+    npcs[0] = new NPC(0, "Ana",1, totalNiveles);
+    npcs[1] = new NPC(1, "Mateo",0, totalNiveles);
+    npcs[2] = new NPC(2, "Bruno",1, totalNiveles);
+    npcs[3] = new NPC(3, "Valeria",0, totalNiveles);
+    npcs[4] = new NPC(4, "Lucia",1, totalNiveles);
+    npcs[5] = new NPC(5, "Diego",0, totalNiveles);
+    npcs[6] = new NPC(6, "Sofía",1, totalNiveles);
+    npcs[7] = new NPC(7, "Marco",0, totalNiveles);
+    npcs[8] = new NPC(8, "Elena",1, totalNiveles);
+    npcs[9] = new NPC(9, "Tadeo",0, totalNiveles);
 
-    npcs[3]->setNivel(0,8,8);
+
+    npcs[3]->setNivel(0, 8, 8);
     npcs[3]->setAparece(0);
-    npcs[0]->setNivel(0,5,6);
+    npcs[0]->setNivel(0, 5, 6);
     npcs[0]->setAparece(0);
-    npcs[1]->setNivel(0,10,9);
+    npcs[1]->setNivel(0, 10, 9);
     npcs[1]->setAparece(0);
-    npcs[0]->setNivel(1,6,6);
+    npcs[4]->setNivel(0, 22, 14);
+    npcs[4]->setAparece(0);
+    npcs[7]->setNivel(0, 9, 3);
+    npcs[7]->setAparece(0);
+
+    npcs[0]->setNivel(1, 6, 6);
     npcs[0]->setAparece(1);
-    npcs[2]->setNivel(1,13,6);
+    npcs[2]->setNivel(1, 13, 6);
     npcs[2]->setAparece(1);
+    npcs[5]->setNivel(1, 20, 9);
+    npcs[5]->setAparece(1);
+    npcs[1]->setNivel(1, 10, 12);
+    npcs[1]->setAparece(1);
+    npcs[8]->setNivel(1, 3, 14);
+    npcs[8]->setAparece(1);
+    npcs[3]->setNivel(1, 18, 5);
+    npcs[3]->setAparece(1);
+
+    npcs[4]->setNivel(2, 23, 5);
+    npcs[4]->setAparece(2);
+    npcs[2]->setNivel(2, 8, 11);
+    npcs[2]->setAparece(2);
+    npcs[6]->setNivel(2, 15, 7);
+    npcs[6]->setAparece(2);
+    npcs[5]->setNivel(2, 19, 14);
+    npcs[5]->setAparece(2);
 
 
-    npcs[0]->setDialogo("GO CHINO?",0);
+    npcs[3]->setNivel(3, 7, 9);
+    npcs[3]->setAparece(3);
+    npcs[6]->setNivel(3, 14, 6);
+    npcs[6]->setAparece(3);
+    npcs[8]->setNivel(3, 24, 12);
+    npcs[8]->setAparece(3);
+    npcs[9]->setNivel(3, 17, 8);
+    npcs[9]->setAparece(3);
+    npcs[5]->setNivel(3, 10, 4);
+    npcs[5]->setAparece(3);
+
+
+    npcs[2]->setNivel(4, 9, 4);
+    npcs[2]->setAparece(4);
+    npcs[7]->setNivel(4, 16, 7);
+    npcs[7]->setAparece(4);
+    npcs[8]->setNivel(4, 21, 10);
+    npcs[8]->setAparece(4);
+    npcs[9]->setNivel(4, 12, 15);
+    npcs[9]->setAparece(4);
+    npcs[6]->setNivel(4, 4, 13);
+    npcs[6]->setAparece(4);
+
+    npcs[0]->setDialogo("La proxima vez estare donde x + y = 12.", 0);
+    npcs[0]->setDialogo("Tal vez este sea nuestro ultimo cruce de caminos.", 1);
+    npcs[1]->setDialogo("Si sumas mis proximas coordenadas tendras 22.", 0);
+    npcs[1]->setDialogo("Si nos volvemos a ver, sera por pura suerte.", 1);
+    npcs[2]->setDialogo("La proxima vez, x + y seguira siendo 19.", 1);
+    npcs[2]->setDialogo("Cuando vuelvas a verme, x + y sera igual a 13.", 2);
+    npcs[2]->setDialogo("Aqui se acaba mi ruta… pero la tuya sigue.", 4);
+    npcs[3]->setDialogo("La proxima vez estare donde x + y = 23.", 0);
+    npcs[3]->setDialogo("Cuando me busques otra vez, x + y valdra 16.", 1);
+    npcs[3]->setDialogo("Si desaparezco, escucha bien: el mapa nunca esta quieto.", 3);
+    npcs[4]->setDialogo("La proxima vez estare donde x + y = 28.", 0);
+    npcs[4]->setDialogo("Despues de esto, me perdere entre las sombras del mapa.", 2);
+    npcs[5]->setDialogo("Mi siguiente parada tiene x + y igual a 33.", 1);
+    npcs[5]->setDialogo("Luego, búscame donde x + y = 14.", 2);
+    npcs[5]->setDialogo("Si no vuelvo, al menos corre más rapido que yo.", 3);
+    npcs[6]->setDialogo("La proxima vez, x + y sera igual a 20.", 2);
+    npcs[6]->setDialogo("Cuando regreses, estare donde x + y = 17.", 3);
+    npcs[6]->setDialogo("Este es mi ultimo nivel… que el tuyo llegue mas lejos.", 4);
+    npcs[7]->setDialogo("Si me buscas de nuevo, x + y sera 23.", 0);
+    npcs[7]->setDialogo("No planeo seguirte despues de aquí.", 4);
+    npcs[8]->setDialogo("Algun dia me veras donde x + y = 36.", 1);
+    npcs[8]->setDialogo("Y luego, en un lugar donde x + y = 31.", 3);
+    npcs[8]->setDialogo("Si llegaste hasta aqui, ya no necesitas mis pistas.", 4);
+    npcs[9]->setDialogo("La proxima vez, x + y sumara 27.", 3);
+    npcs[9]->setDialogo("Despues de esto, solo quedaran tus pasos.", 4);
 }
 
 void Juego::inicializarNiveles()
 {
-    niveles[1]->agregarDefensor(0);
-    niveles[1]->agregarDefensor(3);
     niveles[0]->agregarNPC(0);
     niveles[0]->agregarNPC(1);
     niveles[0]->agregarNPC(3);
+    niveles[0]->agregarNPC(4);
+    niveles[0]->agregarNPC(7);
+
+    niveles[1]->agregarDefensor(0);
+    niveles[1]->agregarDefensor(3);
     niveles[1]->agregarNPC(0);
     niveles[1]->agregarNPC(2);
+    niveles[1]->agregarNPC(1);
+    niveles[1]->agregarNPC(5);
+    niveles[1]->agregarNPC(8);
+    niveles[1]->agregarNPC(3);
+
+    niveles[2]->agregarDefensor(4);
+    niveles[2]->agregarDefensor(2);
+    niveles[2]->agregarNPC(4);
+    niveles[2]->agregarNPC(2);
+    niveles[2]->agregarNPC(6);
+    niveles[2]->agregarNPC(5);
+
+    niveles[3]->agregarDefensor(6);
+    niveles[3]->agregarDefensor(3);
+    niveles[3]->agregarDefensor(5);
+    niveles[3]->agregarNPC(3);
+    niveles[3]->agregarNPC(6);
+    niveles[3]->agregarNPC(8);
+    niveles[3]->agregarNPC(9);
+    niveles[3]->agregarNPC(5);
+
+    niveles[4]->agregarDefensor(2);
+    niveles[4]->agregarDefensor(6);
+    niveles[4]->agregarDefensor(7);
+    niveles[4]->agregarNPC(2);
+    niveles[4]->agregarNPC(7);
+    niveles[4]->agregarNPC(8);
+    niveles[4]->agregarNPC(9);
+    niveles[4]->agregarNPC(6);
 }
+
 
 
 
@@ -221,7 +324,20 @@ void Juego::jugarNivel(int n)
         int npc = defenders[i];
         if (!jugador.esAmigo(npc)){
             cout<<endl<<"..."<<endl;
-            //dibujar aca calavera
+            cout<< "             _____________"           <<endl;
+            cout<< "          .-'  _____   ____'-."       <<endl;
+            cout<< "        .'   .´     `.'     `.  ."    <<endl;
+            cout<< "       /    /  _   _  _   _   \\  \\" <<endl;
+            cout<< "      |    |  ( ) ( )( ) ( )   |  |"  <<endl;
+            cout<< "      |    |   ___     ___     |  |"  <<endl;
+            cout<< "      |    |  (___)   (___)    |  |"  <<endl;
+            cout<< "       \\    \\    .:::::.      /  /" <<endl;
+            cout<< "        `.    `-. '–––'  .-' .'"      <<endl;
+            cout<< "          `-.     `-----´   .-´"      <<endl;
+            cout<< "             `----._____.---´"        <<endl;
+            cout<< "              /    /   \\    \\"      <<endl;
+            cout<< "             /____/     \\____\\"     <<endl;
+            cout<<endl;
             nivelActual = jugador.cargarCheckpoint(totalNPC);
             return;
         }
@@ -245,7 +361,7 @@ void Juego::jugarNivel(int n)
     }
     else
     {
-        cout << "\n¡Felicidades! Terminaste todos los niveles.\n";
+        cout << "\nFelicidades! Terminaste todos los niveles.\n";
         ScoreDB db("scores.txt");
         cout<<"pas1"<<endl;
         int p=jugador.getPh();
@@ -338,10 +454,10 @@ void Juego::interactuarConNPC(int id)
     cout << "\n=================================\n";
     cout << " Te encuentras con: " << nombre << "\n";
     cout << "=================================\n";
-
+    cout << endl<<npc->getDialogo(nivelActual) <<endl<<endl;
     if(jugador.esAmigo(id))
     {
-        cout << npc->getNombre() << ": ¡Broooo que tal! :D\n";
+        cout << npc->getNombre() << ": Broooo que tal! :D\n";
         return;
     }
 
@@ -353,8 +469,8 @@ void Juego::interactuarConNPC(int id)
 
     int costo = 2;
     cout << npc->getNombre() << ": No te conozco, pero pareces buena persona.\n";
-    cout << endl<<npc->getDialogo(nivelActual) <<endl<<endl;
-    cout << "¿Quieres hacerte amigo? (costo: " << costo << " PH)\n";
+
+    cout << "Quieres hacerte amigo? (costo: " << costo << " PH)\n";
     cout << "1) Si\n2) No\n> ";
 
     int op; cin >> op;

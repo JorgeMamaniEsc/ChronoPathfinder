@@ -63,7 +63,7 @@
 1764211598 source:c:\users\user\documents\chrono\crhono\src\personaje.cpp
 	"Personaje.h"
 
-1764285772 source:c:\users\user\documents\chrono\chronopathfinder\main.cpp
+1764287863 source:c:\users\user\documents\chrono\chronopathfinder\main.cpp
 	<iostream>
 	<fstream>
 	"Menu.h"
@@ -97,6 +97,6 @@
 1764279751 source:c:\users\user\documents\chrono\chronopathfinder\src\menu.cpp
 	"Menu.h"
 
-1764287659 source:c:\users\user\documents\chrono\chronopathfinder\src\personaje.cpp
+1764296168 source:c:\users\user\documents\chrono\chronopathfinder\src\personaje.cpp
 	"Personaje.h"
 
