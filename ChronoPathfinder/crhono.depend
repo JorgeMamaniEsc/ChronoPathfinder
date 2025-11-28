@@ -1,0 +1,102 @@
+# depslib dependency file v1.0
+1763872496 source:c:\users\user\documents\chrono\crhono\src\rbt.cpp
+	"RBT.h"
+
+1763998638 c:\users\user\documents\chrono\crhono\include\rbt.h
+	"Trees.h"
+	"RBT.tpp"
+
+1763919582 c:\users\user\documents\chrono\crhono\include\trees.h
+	<iostream>
+	"Trees.tpp"
+
+1763697400 source:c:\users\user\documents\chrono\crhono\src\trees.cpp
+	"Trees.h"
+
+1764210853 source:c:\users\user\documents\chrono\crhono\main.cpp
+	<iostream>
+	<fstream>
+	"Menu.h"
+	"DataStructures.h"
+	"Personaje.h"
+	"Game.h"
+
+1763955237 source:c:\users\user\documents\chrono\crhono\src\menu.cpp
+	"Menu.h"
+
+1763954894 c:\users\user\documents\chrono\crhono\include\menu.h
+	<iostream>
+
+1763918813 c:\users\user\documents\chrono\crhono\include\trees.tpp
+	"Trees.h"
+
+1764004213 c:\users\user\documents\chrono\crhono\include\rbt.tpp
+	"RBT.h"
+
+1764004174 source:c:\users\user\documents\chrono\crhono\src\datastructures.cpp
+	"DataStructures.h"
+
+1763937000 c:\users\user\documents\chrono\crhono\include\datastructures.h
+	<iostream>
+
+1763945859 source:c:\users\user\documents\chrono\crhono\src\twosat.cpp
+	"TwoSAT.h"
+
+1763937133 c:\users\user\documents\chrono\crhono\include\twosat.h
+	<iostream>
+	"DataStructures.h"
+
+1764211578 c:\users\user\documents\chrono\crhono\include\personaje.h
+	<iostream>
+	"DataStructures.h"
+
+1764209895 c:\users\user\documents\chrono\crhono\include\game.h
+	<iostream>
+	<fstream>
+	"DataStructures.h"
+	"Personaje.h"
+	"Menu.h"
+
+1764211961 source:c:\users\user\documents\chrono\crhono\src\game.cpp
+	"Game.h"
+
+1764211598 source:c:\users\user\documents\chrono\crhono\src\personaje.cpp
+	"Personaje.h"
+
+1764285772 source:c:\users\user\documents\chrono\chronopathfinder\main.cpp
+	<iostream>
+	<fstream>
+	"Menu.h"
+	"DataStructures.h"
+	"Personaje.h"
+	"Game.h"
+
+1764279751 c:\users\user\documents\chrono\chronopathfinder\include\menu.h
+	<iostream>
+
+1764279751 c:\users\user\documents\chrono\chronopathfinder\include\datastructures.h
+	<iostream>
+
+1764287672 c:\users\user\documents\chrono\chronopathfinder\include\personaje.h
+	<iostream>
+	"DataStructures.h"
+
+1764279751 c:\users\user\documents\chrono\chronopathfinder\include\game.h
+	<iostream>
+	<fstream>
+	"DataStructures.h"
+	"Personaje.h"
+	"Menu.h"
+
+1764279751 source:c:\users\user\documents\chrono\chronopathfinder\src\datastructures.cpp
+	"DataStructures.h"
+
+1764287435 source:c:\users\user\documents\chrono\chronopathfinder\src\game.cpp
+	"Game.h"
+
+1764279751 source:c:\users\user\documents\chrono\chronopathfinder\src\menu.cpp
+	"Menu.h"
+
+1764287659 source:c:\users\user\documents\chrono\chronopathfinder\src\personaje.cpp
+	"Personaje.h"
+
