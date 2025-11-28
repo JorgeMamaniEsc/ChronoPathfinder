@@ -221,6 +221,7 @@ void Juego::jugarNivel(int n)
         int npc = defenders[i];
         if (!jugador.esAmigo(npc)){
             cout<<endl<<"..."<<endl;
+            //dibujar aca calavera
             nivelActual = jugador.cargarCheckpoint(totalNPC);
             return;
         }

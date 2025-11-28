@@ -81,7 +81,7 @@ NPC::~NPC(){
 }
 
 Jugador::Jugador():Personajes(-1,"Jugador"){
-    ph=10;
+    ph=10; //aca se cambia el ph apaza
     phCheckpoint=ph;
     lvlCheckpoint = 0;
 }
