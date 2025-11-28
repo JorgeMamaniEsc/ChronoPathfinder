@@ -81,7 +81,7 @@ NPC::~NPC(){
 }
 
 Jugador::Jugador():Personajes(-1,"Jugador"){
-    ph=30;
+    ph=32;
     phCheckpoint=ph;
     lvlCheckpoint = 0;
 }
