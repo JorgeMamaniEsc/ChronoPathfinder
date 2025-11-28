@@ -405,8 +405,7 @@ void Juego::moverJugador()
 
             if(po == 1) continue;
             if(po == 2) guardarCheckpoint();
-            if(po == 3) return;
-            if(po == 4) exit(0);
+            if(po == 3) exit(0);
         }
 
         int nx = jugador.getX();
